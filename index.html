@@ -187,7 +187,6 @@
 
     function onMouseDown(event){
       var maxPoint = new Point(view.size.width, view.size.height);
-      var newCircle = new Path.Circle(event.downPoint, 200);
 
       for(var y=1; y<7; y++) {
         for(var x=1; x<5; x++) {
@@ -195,13 +194,14 @@
             event.downPoint.y>(y-1)*(maxPoint.y/6) &&
             event.downPoint.x<x*(maxPoint.x/4) &&
             event.downPoint.x>(x-1)*(maxPoint.x/4)) {
-            newCircle.fillColor=grid[x*y].color;
-            grid[x*y].sound.play();
-            break;
-          }
-        }
-      }
-      circles.push(newCircle);
+              var newCircle = new Path.Circle(event.downPoint, 500);
+              newCircle.fillColor=grid[x*y].color;
+              grid[x*y].sound.play();
+              circles.push(newCircle);
+              break;
+          };
+        };
+      };
     }
 
 //circle animation
